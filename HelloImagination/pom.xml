@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.sixmops</groupId>
+	<artifactId>HelloImagination</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<maven.test.skip>true</maven.test.skip>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.target>1.9</maven.compiler.target>
+		<maven.compiler.source>1.9</maven.compiler.source>
+		<maven.jlink.version>3.0.0-alpha-1</maven.jlink.version>
+		<!-- <maven.jmod.version>3.0.0-alpha-1</maven.jmod.version> -->
+		<maven.jmod.version>3.0.0-alpha-2-SNAPSHOT</maven.jmod.version>
+		<maven.jlink.version>3.0.0-alpha-2-SNAPSHOT</maven.jlink.version>
+	</properties>
+
+
+
+	<modules>
+
+		<module>imagination/parent</module>
+		<module>imagination/component</module>
+		<module>imagination/simulation</module>
+		<module>imagination/runtime</module>
+
+
+	</modules>
+
+	<dependencies>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.openjfx</groupId> -->
+<!-- 			<artifactId>javafx-controls</artifactId> -->
+<!-- 			<version>12-ea+6</version> -->
+<!-- 			<classifier>linux</classifier> -->
+<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jmod-plugin</artifactId>
+			<version>${maven.jmod.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.json</groupId>
+			<artifactId>javax.json-api</artifactId>
+			<version>1.1.4</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.glassfish/javax.json -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.glassfish</groupId> -->
+<!-- 			<artifactId>javax.json</artifactId> -->
+<!-- 			<version>1.1.4</version> -->
+<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>1.1.4</version>
+		</dependency>
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.maven.plugins</groupId> -->
+		<!-- <artifactId>maven-jlink-plugin</artifactId> -->
+		<!-- <version>${maven.jlink.version}</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.maven.plugins</groupId> -->
+		<!-- <artifactId>maven-jlink-plugin</artifactId> -->
+		<!-- <version>3.0.0-alpha-2-SNAPSHOT</version> -->
+		<!-- </dependency> -->
+	</dependencies>
+</project>

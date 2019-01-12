@@ -1,0 +1,116 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- <parent> -->
+	<!-- <groupId>com.sixmops</groupId> -->
+	<!-- <artifactId>parent</artifactId> -->
+	<!-- <version>1.0</version> -->
+	<!-- <relativePath>../</relativePath> -->
+	<!-- </parent> -->
+
+
+	<packaging>jmod</packaging>
+
+	<groupId>com.sixmops</groupId>
+	<artifactId>simulation</artifactId>
+	<version>1.0</version>
+
+	<properties>
+		<maven.test.skip>true</maven.test.skip>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.release>11</maven.compiler.release>
+	</properties>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<release>${maven.compiler.release}</release>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-toolchains-plugin</artifactId>
+				<version>1.1</version>
+				<executions>
+					<execution>
+          				<?m2e ignore ?>
+						<goals>
+							<goal>toolchain</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<toolchains>
+						<jdk>
+							<version>${maven.compiler.release}</version>
+							<vendor>oracle</vendor>
+						</jdk>
+					</toolchains>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jmod-plugin</artifactId>
+				<version>3.0.0-alpha-2-SNAPSHOT</version>
+				<extensions>true</extensions>
+				<configuration>
+					<detail>true</detail>
+					<mainClass>com.sixmops.simulation.App</mainClass>
+					<targetPlatform>linux-amd64</targetPlatform>
+					<classPath>/home/joe/.m2/repository/org/openjfx/javafx-controls/12-ea+6</classPath>
+					<modulePath>/home/joe/.m2/repository/org/openjfx/javafx-controls/12-ea+6</modulePath>
+				</configuration>
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>list</id> -->
+<!-- 						<goals> -->
+<!-- 							<goal>list</goal> -->
+<!-- 						</goals> -->
+<!-- 						<phase>verify</phase> -->
+<!-- 					</execution> -->
+<!-- 					<execution> -->
+<!-- 						<id>describe</id> -->
+<!-- 						<goals> -->
+<!-- 							<goal>describe</goal> -->
+<!-- 						</goals> -->
+<!-- 						<phase>verify</phase> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-base-jmod</artifactId>
+			<version>12-ea+6</version>
+			<classifier>linux</classifier> 
+			<type>jmod</type>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls-jmod</artifactId>
+			<version>12-ea+6</version>
+			<classifier>linux</classifier> 
+			<type>jmod</type>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-graphics-jmod</artifactId>
+			<version>12-ea+6</version>
+			<classifier>linux</classifier> 
+			<type>jmod</type>
+		</dependency>
+
+	</dependencies>
+</project>
