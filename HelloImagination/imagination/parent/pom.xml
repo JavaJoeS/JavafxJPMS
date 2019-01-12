@@ -3,12 +3,6 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<!-- <parent> -->
-	<!-- <groupId>com.sixmops</groupId> -->
-	<!-- <artifactId>HelloImagination</artifactId> -->
-	<!-- <version>1.0-SNAPSHOT</version> -->
-	<!-- <relativePath>../../</relativePath> -->
-	<!-- </parent> -->
 
 	<groupId>com.sixmops</groupId>
 	<artifactId>parent</artifactId>
@@ -19,20 +13,7 @@
 
 
 	<dependencies>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.openjfx</groupId> -->
-<!-- 			<artifactId>javafx-controls</artifactId> -->
-<!-- 			<version>12-ea+6</version> -->
-<!-- 			<classifier>linux</classifier> -->
-<!-- 		</dependency> -->
-		<!-- https://mvnrepository.com/artifact/org.objectweb.asm/org.objectweb.asm -->
 
-		<!-- <dependency> -->
-		<!-- <groupId>javax.json</groupId> -->
-		<!-- <artifactId>javax.json-api</artifactId> -->
-		<!-- <version>1.1.4</version> -->
-		<!-- <type>jmod</type> -->
-		<!-- </dependency> -->
 	</dependencies>
 
 </project>
