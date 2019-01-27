@@ -84,7 +84,7 @@
 						<addModule>com.sixmops.simulation</addModule>
 						<addModule>javafx.graphics</addModule>
 					</addModules>
-					<launcher>run=com.sixmops.simulation/com.sixmops.simulation.App</launcher>
+					<launcher>run=com.sixmops.simulation/com.sixmops.simulation.MainFX</launcher>
 				</configuration>
 				<executions>
 					<execution>

@@ -65,27 +65,27 @@
 				<extensions>true</extensions>
 				<configuration>
 					<detail>true</detail>
-					<mainClass>com.sixmops.simulation.App</mainClass>
+					<mainClass>com.sixmops.simulation.MainFX</mainClass>
 					<targetPlatform>linux-amd64</targetPlatform>
 					<classPath>/home/joe/.m2/repository/org/openjfx/javafx-controls/12-ea+6</classPath>
 					<modulePath>/home/joe/.m2/repository/org/openjfx/javafx-controls/12-ea+6</modulePath>
 				</configuration>
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<id>list</id> -->
-<!-- 						<goals> -->
-<!-- 							<goal>list</goal> -->
-<!-- 						</goals> -->
-<!-- 						<phase>verify</phase> -->
-<!-- 					</execution> -->
-<!-- 					<execution> -->
-<!-- 						<id>describe</id> -->
-<!-- 						<goals> -->
-<!-- 							<goal>describe</goal> -->
-<!-- 						</goals> -->
-<!-- 						<phase>verify</phase> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
+				<!-- <executions> -->
+				<!-- <execution> -->
+				<!-- <id>list</id> -->
+				<!-- <goals> -->
+				<!-- <goal>list</goal> -->
+				<!-- </goals> -->
+				<!-- <phase>verify</phase> -->
+				<!-- </execution> -->
+				<!-- <execution> -->
+				<!-- <id>describe</id> -->
+				<!-- <goals> -->
+				<!-- <goal>describe</goal> -->
+				<!-- </goals> -->
+				<!-- <phase>verify</phase> -->
+				<!-- </execution> -->
+				<!-- </executions> -->
 			</plugin>
 		</plugins>
 	</build>
@@ -94,23 +94,34 @@
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-base-jmod</artifactId>
 			<version>12-ea+6</version>
-			<classifier>linux</classifier> 
+			<classifier>linux</classifier>
 			<type>jmod</type>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-controls-jmod</artifactId>
 			<version>12-ea+6</version>
-			<classifier>linux</classifier> 
+			<classifier>linux</classifier>
 			<type>jmod</type>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-graphics-jmod</artifactId>
 			<version>12-ea+6</version>
-			<classifier>linux</classifier> 
+			<classifier>linux</classifier>
 			<type>jmod</type>
 		</dependency>
-
+		<dependency>
+			<groupId>com.sixmops</groupId>
+			<artifactId>component</artifactId>
+			<version>1.0</version>
+			<type>jmod</type>
+		</dependency>
+		<dependency>
+			<groupId>javax.json</groupId>
+			<artifactId>javax.json-api</artifactId>
+			<version>1.1.4</version>
+			<type>jmod</type>
+		</dependency>
 	</dependencies>
 </project>

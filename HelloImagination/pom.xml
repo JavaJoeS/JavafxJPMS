@@ -18,20 +18,86 @@
 		<maven.jlink.version>3.0.0-alpha-2-SNAPSHOT</maven.jlink.version>
 	</properties>
 
+	<build>
+		<plugins>
+			<plugin>
+					<groupId>com.soebes.maven.plugins</groupId>
+					<artifactId>maven-echo-plugin</artifactId>
+					<version>0.1</version>
+					<executions>
+						<execution>
+							<phase>verify</phase>
+							<goals>
+								<goal>echo</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<echos>
+							<echo>This is the Text which will be printed out.</echo>
+						</echos>
+					</configuration>
+				</plugin>
+		</plugins>
+	</build>
 
+	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>imagination/parent</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>jmod-build-local</id>
+			<activation>
+				<file>
+					<missing>${user.home}/.m2/repository/org/apache/maven/plugins/maven-jmod-plugin/3.0.0-alpha-2-SNAPSHOT/maven-jmod-plugin-3.0.0-alpha-2-SNAPSHOT.jar</missing>
+				</file>
+			</activation>
+			<modules>
+				<module>imagination/parent</module>
+				<module>imagination/jmod-dependency</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>jlink-build-local</id>
+			<activation>
+				<file>
+					<missing>${user.home}/.m2/repository/org/apache/maven/plugins/maven-jlink-plugin/3.0.0-alpha-2-SNAPSHOT/maven-jlink-plugin-3.0.0-alpha-2-SNAPSHOT.jar</missing>
+				</file>
+			</activation>
+			<modules>
+				<module>imagination/parent</module>
+				<module>imagination/jlink-dependency</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>sixmops</id>
+			<activation>
+				<file>
+					<exists>${user.home}/.m2/repository/org/apache/maven/plugins/maven-jlink-plugin/3.0.0-alpha-2-SNAPSHOT/maven-jlink-plugin-3.0.0-alpha-2-SNAPSHOT.jar</exists>
+				</file>
+			</activation>
+			<modules>
+				<module>imagination/component</module>
+				<module>imagination/simulation</module>
+				<module>imagination/runtime</module>
+			</modules>
+		</profile>
+	</profiles>
 
-	<modules>
-
-		<module>imagination/parent</module>
-		<module>imagination/component</module>
-		<module>imagination/simulation</module>
-		<module>imagination/runtime</module>
-
-
-	</modules>
 
 	<dependencies>
 
+		<dependency>
+			<groupId>com.sixmops</groupId>
+			<artifactId>parent</artifactId>
+			<version>1.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-jmod-plugin</artifactId>
@@ -49,15 +115,5 @@
 			<version>1.1.4</version>
 		</dependency>
 
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.maven.plugins</groupId> -->
-		<!-- <artifactId>maven-jlink-plugin</artifactId> -->
-		<!-- <version>${maven.jlink.version}</version> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.maven.plugins</groupId> -->
-		<!-- <artifactId>maven-jlink-plugin</artifactId> -->
-		<!-- <version>3.0.0-alpha-2-SNAPSHOT</version> -->
-		<!-- </dependency> -->
 	</dependencies>
 </project>
