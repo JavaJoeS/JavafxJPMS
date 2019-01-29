@@ -1,4 +1,4 @@
-module com.sixmops.component {
+module com.sixmops.component.bits {
 	requires transitive java.json;
 	//requires transitive org.glassfish.java.json;
 	requires java.base;

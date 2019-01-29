@@ -4,12 +4,12 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<!-- <parent> -->
-	<!-- <groupId>com.sixmops</groupId> -->
-	<!-- <artifactId>parent</artifactId> -->
-	<!-- <version>1.0</version> -->
-	<!-- <relativePath>../</relativePath> -->
-	<!-- </parent> -->
+	<parent>
+		<groupId>com.sixmops</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0</version>
+		<relativePath>../</relativePath>
+	</parent>
 
 
 	<packaging>jmod</packaging>
@@ -67,8 +67,8 @@
 					<detail>true</detail>
 					<mainClass>com.sixmops.simulation.MainFX</mainClass>
 					<targetPlatform>linux-amd64</targetPlatform>
-					<classPath>/home/joe/.m2/repository/org/openjfx/javafx-controls/12-ea+6</classPath>
-					<modulePath>/home/joe/.m2/repository/org/openjfx/javafx-controls/12-ea+6</modulePath>
+<!-- 					<classPath>/home/joe/.m2/repository/org/openjfx/javafx-controls/12-ea+6</classPath> -->
+<!-- 					<modulePath>/home/joe/.m2/repository/org/openjfx/javafx-controls/12-ea+6</modulePath> -->
 				</configuration>
 				<!-- <executions> -->
 				<!-- <execution> -->
@@ -92,23 +92,23 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-base-jmod</artifactId>
-			<version>12-ea+6</version>
-			<classifier>linux</classifier>
+			<artifactId>javafx-base-mod</artifactId>
+			<version>${javafx.version}</version>
+			<classifier>${os.type}</classifier>
 			<type>jmod</type>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-controls-jmod</artifactId>
-			<version>12-ea+6</version>
-			<classifier>linux</classifier>
+			<artifactId>javafx-controls-mod</artifactId>
+			<version>${javafx.version}</version>
+			<classifier>${os.type}</classifier>
 			<type>jmod</type>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-graphics-jmod</artifactId>
-			<version>12-ea+6</version>
-			<classifier>linux</classifier>
+			<artifactId>javafx-graphics-mod</artifactId>
+			<version>${javafx.version}</version>
+			<classifier>${os.type}</classifier>
 			<type>jmod</type>
 		</dependency>
 		<dependency>

@@ -24,37 +24,7 @@
 
 	<packaging>jmod</packaging>
 
-
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.apache.maven.plugins</groupId>
-										<artifactId>maven-jmod-plugin</artifactId>
-										<version>3.0.0-alpha-2-SNAPSHOT</version>
-										<goals>
-											<goal>attach-test-resources</goal>
-											<goal>filter-resources</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
+	<build>	
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -97,39 +67,33 @@
 				<configuration>
 					<detail>true</detail>
 					<mainClass>com.sixmops.component.App</mainClass>
+					<classPath>.</classPath>
+					<doNotResolveByDefault>true</doNotResolveByDefault>
+					<dryRun>true</dryRun>
+					<goal>install</goal>
+					<jmodFile>${project.build.directory}/jmods/${project.artifactId}.jmod</jmodFile>
+					<modulePath>${project.build.directory}/jmods</modulePath>
 					<targetPlatform>linux-amd64</targetPlatform>
 				</configuration>
-				<executions>
-					<execution>
-						<id>list</id>
-						<goals>
-							<goal>list</goal>
-						</goals>
-						<phase>verify</phase>
-					</execution>
-					<execution>
-						<id>describe</id>
-						<goals>
-							<goal>describe</goal>
-						</goals>
-						<phase>verify</phase>
-					</execution>
-				</executions>
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>list</id> -->
+<!-- 						<goals> -->
+<!-- 							<goal>list</goal> -->
+<!-- 						</goals> -->
+<!-- 						<phase>verify</phase> -->
+<!-- 					</execution> -->
+<!-- 					<execution> -->
+<!-- 						<id>describe</id> -->
+<!-- 						<goals> -->
+<!-- 							<goal>describe</goal> -->
+<!-- 						</goals> -->
+<!-- 						<phase>verify</phase> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
 			</plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>3.0.0-M2</version>
-				<executions>
-					<!-- ! Currently turned off enforcer cause ! we are using SNAPSHOT versions 
-						of plugins ! which are by default forbidden by ! the inherited enforcer rules. -->
-					<execution>
-						<id>enforce-maven</id>
-						<phase>UNKNOWN</phase>
-					</execution>
-				</executions>
-			</plugin>
+
 		</plugins>
 	</build>
 	<dependencies>

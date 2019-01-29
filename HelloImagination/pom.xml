@@ -26,7 +26,7 @@
 					<version>0.1</version>
 					<executions>
 						<execution>
-							<phase>verify</phase>
+							<phase>install</phase>
 							<goals>
 								<goal>echo</goal>
 							</goals>
@@ -34,7 +34,7 @@
 					</executions>
 					<configuration>
 						<echos>
-							<echo>This is the Text which will be printed out.</echo>
+							<echo>RUN MVN TWICE! The first run loads dependencies from git, the second builds.</echo>
 						</echos>
 					</configuration>
 				</plugin>
@@ -49,6 +49,18 @@
 			</activation>
 			<modules>
 				<module>imagination/parent</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>jfx-build-local</id>
+			<activation>
+				<file>
+					<missing>${user.home}/.m2/repository/org/openjfx/javafx/12-ea+6/javafx-12-ea+6.pom</missing>
+				</file>
+			</activation>
+			<modules>
+				<module>imagination/parent</module>
+				<module>imagination/fx-check</module>
 			</modules>
 		</profile>
 		<profile>
