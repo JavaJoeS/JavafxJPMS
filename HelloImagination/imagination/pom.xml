@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.sixmops</groupId>
+	<artifactId>imagination</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	
+	<properties>
+		<javafx.version>12-ea+10</javafx.version>
+		<json.version>1.1.4</json.version>
+		<fx.home>/org/openjfx/</fx.home>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>unix-family</id>
+			<activation>
+				<os>
+					<family>unix</family>
+				</os>
+			</activation>
+			<properties>
+				<os.type>linux</os.type>
+			</properties>
+		</profile>
+		<profile>
+			<id>windoz-family</id>
+			<activation>
+				<os>
+					<family>windows</family>
+				</os>
+			</activation>
+			<properties>
+				<os.type>windoz</os.type>
+			</properties>
+		</profile>
+	</profiles>
+	<modules>
+		<module>component</module>
+		<module>simulation</module>
+		<module>finalruntime</module>
+	</modules>
+	
+	<build>
+		<plugins>
+			<plugin>
+					<groupId>com.soebes.maven.plugins</groupId>
+					<artifactId>maven-echo-plugin</artifactId>
+					<version>0.1</version>
+					<executions>
+						<execution>
+							<phase>install</phase>
+							<goals>
+								<goal>echo</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<echos>
+							<echo>------Its just your imagination, runing away woth you! -------------------</echo>
+						</echos>
+					</configuration>
+				</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.json</groupId> -->
+<!-- 			<artifactId>javax.json-api-mod</artifactId> -->
+<!-- 			<version>1.1.4</version> -->
+<!-- 			<type>jmod</type> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.json</groupId> -->
+<!-- 			<artifactId>javax.json-api</artifactId> -->
+<!-- 			<version>1.1.4</version> -->
+<!-- 		</dependency> -->
+	</dependencies>
+
+</project>

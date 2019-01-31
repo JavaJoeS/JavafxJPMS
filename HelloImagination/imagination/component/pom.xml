@@ -5,7 +5,7 @@
 
 	<parent>
 		<groupId>com.sixmops</groupId>
-		<artifactId>parent</artifactId>
+		<artifactId>imagination</artifactId>
 		<version>1.0</version>
 		<relativePath>../</relativePath>
 	</parent>
@@ -24,7 +24,7 @@
 
 	<packaging>jmod</packaging>
 
-	<build>	
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -67,39 +67,39 @@
 				<configuration>
 					<detail>true</detail>
 					<mainClass>com.sixmops.component.App</mainClass>
-					<classPath>.</classPath>
 					<doNotResolveByDefault>true</doNotResolveByDefault>
-					<dryRun>true</dryRun>
 					<goal>install</goal>
 					<jmodFile>${project.build.directory}/jmods/${project.artifactId}.jmod</jmodFile>
-					<modulePath>${project.build.directory}/jmods</modulePath>
+					<modulePath>${settings.localRepository}/javax/json/javax.json-api-mod/${json.version}</modulePath>
 					<targetPlatform>linux-amd64</targetPlatform>
+					
 				</configuration>
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<id>list</id> -->
-<!-- 						<goals> -->
-<!-- 							<goal>list</goal> -->
-<!-- 						</goals> -->
-<!-- 						<phase>verify</phase> -->
-<!-- 					</execution> -->
-<!-- 					<execution> -->
-<!-- 						<id>describe</id> -->
-<!-- 						<goals> -->
-<!-- 							<goal>describe</goal> -->
-<!-- 						</goals> -->
-<!-- 						<phase>verify</phase> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
+				<!-- <executions> -->
+				<!-- <execution> -->
+				<!-- <id>list</id> -->
+				<!-- <goals> -->
+				<!-- <goal>list</goal> -->
+				<!-- </goals> -->
+				<!-- <phase>verify</phase> -->
+				<!-- </execution> -->
+				<!-- <execution> -->
+				<!-- <id>describe</id> -->
+				<!-- <goals> -->
+				<!-- <goal>describe</goal> -->
+				<!-- </goals> -->
+				<!-- <phase>verify</phase> -->
+				<!-- </execution> -->
+				<!-- </executions> -->
 			</plugin>
 
 
 		</plugins>
 	</build>
+
 	<dependencies>
 		<dependency>
 			<groupId>javax.json</groupId>
-			<artifactId>javax.json-api</artifactId>
+			<artifactId>javax.json-api-mod</artifactId>
 			<version>1.1.4</version>
 			<type>jmod</type>
 		</dependency>

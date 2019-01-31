@@ -5,13 +5,13 @@
 
 	<parent>
 		<groupId>com.sixmops</groupId>
-		<artifactId>parent</artifactId>
+		<artifactId>fxcheck</artifactId>
 		<version>1.0</version>
-		<relativePath>../../</relativePath>
+		<relativePath>../</relativePath>
 	</parent>
 
 	<groupId>com.sixmops</groupId>
-	<artifactId>fx-dependency</artifactId>
+	<artifactId>fxdependency</artifactId>
 	<version>1.0</version>
 
 	<packaging>pom</packaging>
@@ -44,8 +44,6 @@
 	<build>
 
 		<plugins>
-			
-
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -168,7 +166,6 @@
 			<artifactId>javafx-graphics</artifactId>
 			<version>${javafx.version}</version>
 		</dependency>
-		
 	</dependencies>
 
 </project>

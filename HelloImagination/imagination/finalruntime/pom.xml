@@ -5,17 +5,17 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-	<groupId>com.sixmops</groupId>
-	<artifactId>parent</artifactId>
-	<version>1.0</version>
-	<relativePath>../../</relativePath>
+		<groupId>com.sixmops</groupId>
+		<artifactId>imagination</artifactId>
+		<version>1.0</version>
+		<relativePath>../</relativePath>
 	</parent>
 
 
 	<packaging>jlink</packaging>
 
 	<groupId>com.sixmops</groupId>
-	<artifactId>runtime</artifactId>
+	<artifactId>finalruntime</artifactId>
 	<version>1.0</version>
 
 	<properties>
@@ -31,21 +31,21 @@
 
 	<build>
 		<plugins>
-			 <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
-                    <release>11</release>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.ow2.asm</groupId>
-                        <artifactId>asm</artifactId>
-                        <version>7.0</version> <!-- Use newer version of ASM -->
-                    </dependency>
-                </dependencies>
-            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<release>11</release>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.ow2.asm</groupId>
+						<artifactId>asm</artifactId>
+						<version>7.0</version> <!-- Use newer version of ASM -->
+					</dependency>
+				</dependencies>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-toolchains-plugin</artifactId>
@@ -77,9 +77,10 @@
 					<detail>true</detail>
 					<noHeaderFiles>true</noHeaderFiles>
 					<noManPages>true</noManPages>
-					<modulePaths>${settings.localRepository}/com/sixmops/component/1.0:${settings.localRepository}/com/sixmops/simulation/1.0:${settings.localRepository}/org/openjfx/javafx-graphics-mod/${javafx.version}:${settings.localRepository}/org/openjfx/javafx-controls-mod/${javafx.version}:${settings.localRepository}/org/openjfx/javafx-base-mod/${javafx.version}</modulePaths>
+					<modulePaths>${settings.localRepository}/com/sixmops/component/1.0:${settings.localRepository}/com/sixmops/simulation/1.0:${settings.localRepository}/org/openjfx/javafx-graphics-mod/${javafx.version}:${settings.localRepository}/org/openjfx/javafx-controls-mod/${javafx.version}:${settings.localRepository}/org/openjfx/javafx-base-mod/${javafx.version}:${settings.localRepository}/javax/json/javax.json-api-mod/${json.version}</modulePaths>
 					<addModules>
-						<addModule>org.glassfish.java.json</addModule>
+<!-- 						<addModule>javax.json</addModule> -->
+<!-- 						<addModule>org.glassfish.java.json</addModule> -->
 						<addModule>com.sixmops.component.bits</addModule>
 						<addModule>com.sixmops.simulation</addModule>
 						<addModule>javafx.graphics</addModule>
@@ -100,33 +101,11 @@
 	</build>
 
 	<dependencies>
-	
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.openjfx</groupId> -->
-<!-- 			<artifactId>javafx-base</artifactId> -->
-<!-- 			<version>12-ea+6</version> -->
-<!-- 			<classifier>linux</classifier> -->
-<!-- 			<type>jmod</type> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.openjfx</groupId> -->
-<!-- 			<artifactId>javafx-controls</artifactId> -->
-<!-- 			<version>12-ea+6</version> -->
-<!-- 			<classifier>linux</classifier> -->
-<!-- 			<type>jmod</type> -->
-<!-- 		</dependency> -->
-		
-		
 		<dependency>
 			<groupId>javax.json</groupId>
-			<artifactId>javax.json-api</artifactId>
+			<artifactId>javax.json-api-mod</artifactId>
 			<version>1.1.4</version>
 			<type>jmod</type>
-		</dependency>
-		<dependency>
-			<groupId>javax.json</groupId>
-			<artifactId>javax.json-api</artifactId>
-			<version>1.1.4</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sixmops</groupId>
@@ -145,7 +124,7 @@
 			<artifactId>javax.json</artifactId>
 			<version>1.1.4</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-base-mod</artifactId>
@@ -159,7 +138,7 @@
 			<version>${javafx.version}</version>
 			<classifier>${os.type}</classifier>
 			<type>jmod</type>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-graphics-mod</artifactId>
@@ -167,20 +146,7 @@
 			<classifier>${os.type}</classifier>
 			<type>jmod</type>
 		</dependency>
-		
-		
-		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.openjfx</groupId> -->
-<!-- 			<artifactId>javafx-fxml</artifactId> -->
-<!-- 			<version>12-ea+6</version> -->
-<!-- 			<classifier>linux</classifier> -->
-<!-- 		</dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.maven.plugins</groupId> -->
-		<!-- <artifactId>maven-jlink-plugin</artifactId> -->
-		<!-- <version>${maven.jlink.version}</version> -->
-		<!-- </dependency> -->
+
 	</dependencies>
 
 </project>
