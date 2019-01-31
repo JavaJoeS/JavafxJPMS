@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sixmops</groupId>
-	<artifactId>HelloImagination</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<artifactId>javaFXProject</artifactId>
+	<version>1.0</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -34,13 +34,16 @@
 					</executions>
 					<configuration>
 						<echos>
+							<echo>----------------------------------------------------------------------------</echo>
 							<echo>RUN MVN TWICE! The first run loads dependencies from git, the second builds.</echo>
+							<echo>----------------------------------------------------------------------------</echo>
 						</echos>
 					</configuration>
 				</plugin>
 		</plugins>
 	</build>
-
+	
+	
 	<profiles>
 		<profile>
 			<id>default</id>
@@ -48,7 +51,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<modules>
-				<module>imagination/parent</module>
+				<module>preload</module>
 			</modules>
 		</profile>
 		<profile>
@@ -59,8 +62,7 @@
 				</file>
 			</activation>
 			<modules>
-				<module>imagination/parent</module>
-				<module>imagination/fx-check</module>
+				<module>preload</module>
 			</modules>
 		</profile>
 		<profile>
@@ -71,7 +73,6 @@
 				</file>
 			</activation>
 			<modules>
-				<module>imagination/parent</module>
 				<module>imagination/jmod-dependency</module>
 			</modules>
 		</profile>
@@ -83,7 +84,6 @@
 				</file>
 			</activation>
 			<modules>
-				<module>imagination/parent</module>
 				<module>imagination/jlink-dependency</module>
 			</modules>
 		</profile>
@@ -95,37 +95,9 @@
 				</file>
 			</activation>
 			<modules>
-				<module>imagination/component</module>
-				<module>imagination/simulation</module>
-				<module>imagination/runtime</module>
+				<module>imagination</module>
 			</modules>
 		</profile>
 	</profiles>
 
-
-	<dependencies>
-
-		<dependency>
-			<groupId>com.sixmops</groupId>
-			<artifactId>parent</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-jmod-plugin</artifactId>
-			<version>${maven.jmod.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.json</groupId>
-			<artifactId>javax.json-api</artifactId>
-			<version>1.1.4</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.json</artifactId>
-			<version>1.1.4</version>
-		</dependency>
-
-	</dependencies>
 </project>

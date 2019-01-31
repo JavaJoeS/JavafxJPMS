@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.sixmops</groupId>
+	<artifactId>preload</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	
+	<properties>
+		<javafx.version>12-ea+10</javafx.version>
+		<json.version>1.1.4</json.version>
+		<fx.home>/org/openjfx/</fx.home>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>unix-family</id>
+			<activation>
+				<os>
+					<family>unix</family>
+				</os>
+			</activation>
+			<properties>
+				<os.type>linux</os.type>
+			</properties>
+		</profile>
+		<profile>
+			<id>windoz-family</id>
+			<activation>
+				<os>
+					<family>windows</family>
+				</os>
+			</activation>
+			<properties>
+				<os.type>windoz</os.type>
+			</properties>
+		</profile>
+		<profile>
+			<id>sixmops</id>
+			<activation>
+				<file>
+					<missing>${settings.localRepository}/javax/json/javax.json-api-mod/${json.version}/javax.json-api-mod-${json.version}.jmod</missing>
+				</file>
+			</activation>
+			<modules>
+				<module>fxdepmgt</module>
+			</modules>
+		</profile>
+	</profiles>
+	
+	<build>
+		<plugins>
+			
+			<plugin>
+					<groupId>com.soebes.maven.plugins</groupId>
+					<artifactId>maven-echo-plugin</artifactId>
+					<version>0.1</version>
+					<executions>
+						<execution>
+							<phase>install</phase>
+							<goals>
+								<goal>echo</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<echos>
+							<echo>---Include the Jmod and Jlink dependencies, build them, and install localRepository-----</echo>
+						</echos>
+					</configuration>
+				</plugin>
+		</plugins>
+	</build>
+	
+	<modules>
+		<module>fxcheck</module>
+	</modules>
+	
+	
+
+</project>
