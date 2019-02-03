@@ -27,6 +27,17 @@
 			<modules>
 				<module>fxdependency</module>
 			</modules>
+		</profile>
+		<profile>
+			<id>jfx-windoz</id>
+			<activation>
+				<os> 
+					<name>windows</name>
+				</os>
+			</activation>
+			<modules>
+				<module>javafxwindows</module>
+			</modules>
 		</profile>	
 	</profiles>
 	
