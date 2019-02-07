@@ -34,7 +34,7 @@
 				</os>
 			</activation>
 			<properties>
-				<os.type>windoz</os.type>
+				<os.type>win</os.type>
 			</properties>
 		</profile>
 		<profile>

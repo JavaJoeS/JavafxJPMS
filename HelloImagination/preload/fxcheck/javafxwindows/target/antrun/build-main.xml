@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <mkdir dir="${settings.localRepository}${fx.home}javafx-base-mod/${javafx.version}"/>
+  <exec executable="jmod">
+    <arg value="create"/>
+    <arg value="--class-path"/>
+    <arg value="${settings.localRepository}${fx.home}javafx-base/${javafx.version}/javafx-base-${javafx.version}-${os.type}.jar"/>
+    <arg value="${settings.localRepository}${fx.home}javafx-base-mod/${javafx.version}/javafx-base-mod-${javafx.version}-${os.type}.jmod"/>
+  </exec>
+</target>
+</project>

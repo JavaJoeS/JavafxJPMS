@@ -37,11 +37,51 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 import com.sixmops.component.App;
+import com.sixmops.simulation.BitcoinRate;
+import com.sixmops.simulation.EverythingDate;
+import com.sixmops.simulation.EverythingTimer;
 
 public class MainFX extends Application {
+	App zap;
+	StringProperty dollars;
+	BitcoinRate bitcoinRate;
+	EverythingDate everythingDate;
+	EverythingTimer everythingTimer;
+	public MainFX() {
+		
+		bitcoinRate = new BitcoinRate();
+		everythingDate = new EverythingDate();
+		everythingTimer = new EverythingTimer( everythingDate );
+		zap = new App();
+		bitcoinRate.setRate( zap.getUsd() );
+		
+		BitAppController control = new BitAppController( zap, bitcoinRate );
+		
 
+		bitcoinRate.getProperty().addListener(new ChangeListener<String>() {
+	        @Override
+	        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+	        	System.out.println("changed value Hello World!   NEW:"+ newValue);
+	        	
+	        	//dollars = new SimpleStringProperty( zap.getUsd() );
+	        	if (!newValue.matches("\\d*")) {
+	            	System.out.println("new value Hello World!");
+	            }
+	
+	            if (newValue.isEmpty())
+	                System.out.println(" empty valueHello World!");
+	            
+	    	  
+			}
+	   });  
+	}
+	
 	@Override
 	public void start(Stage primaryStage) {
 
@@ -69,7 +109,28 @@ public class MainFX extends Application {
 
 		primaryStage.setScene(scene);
 
+		zap = new App();
+		zap.getBitcoinTicker();
+		bitcoinRate.setRate( zap.getUsd() );
 		primaryStage.show();
+		
+		
+//		dollars.addListener(new ChangeListener<String>() {
+//	        @Override
+//	        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//	        	System.out.println("changed value Hello World!");
+//	        	//dollars = new SimpleStringProperty( zap.getUsd() );
+//	        	if (!newValue.matches("\\d*")) {
+//	            	System.out.println("new value Hello World!");
+//	            }
+//
+//	            if (newValue.isEmpty())
+//	                System.out.println(" empty valueHello World!");
+//	            
+//	            //dollars.setValue( zap.getUsd() );
+//
+//	        }
+//	    });  
 
 	}
 
@@ -148,12 +209,14 @@ public class MainFX extends Application {
 		grid.setPadding(new Insets(0, 10, 0, 10));
 
 		// Category in column 2, row 1
-		Text category = new Text("Sales:");
+		Text category = new Text("Currency Value:");
 		category.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		grid.add(category, 1, 0);
 
 		// Title in column 3, row 1
-		Text chartTitle = new Text("Current Year");
+		//Text chartTitle = new Text( zap.getUsd());
+		Text chartTitle = new Text( bitcoinRate.getRate() );
+		chartTitle.textProperty().bind( bitcoinRate.getProperty() );
 		chartTitle.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		grid.add(chartTitle, 2, 0);
 
@@ -242,6 +305,8 @@ public class MainFX extends Application {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("App invoking main");
 		Application.launch(args);
+
 	}
 }

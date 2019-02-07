@@ -20,12 +20,19 @@ import java.io.ByteArrayInputStream;
  * Hello world!
  *
  */
-public class App {
+public class App  {
 	private String USD;
 	protected static final String bits="https://bitaps.com/api/ticker?";
+	TimedServicePull spull;
 	public App() {
 		
+		//spull = new TimedServicePull( this );
 		System.out.println( "Hello App!" );
+		
+		//getBitcoinTicker();
+		
+	}
+	public void getBitcoinTicker() {
 		StringBuilder sb = new StringBuilder(bits);
 		sb.append("average");
 		
@@ -79,9 +86,11 @@ public class App {
 		                	System.out.println(event.toString() + " " + jp.getString());
 		                	break;
 		                case VALUE_NUMBER:
-		                    System.out.println(event.toString() + " " + jp.getString());
+		                    //System.out.println(event.toString() + " " + jp.getString());
 		                    if ( gotUsd) {
+		                    	//System.out.println(event.toString() + "  ITS USD " + jp.getString());
 		                    	USD=jp.getString();
+		                    	gotUsd=false;
 		                    }
 		                    break;
 		            }
@@ -116,6 +125,8 @@ public class App {
 	}
 	public String getUsd() {
 		
+		System.out.println("App  getUSD  teh dollars");
+		//new TimedServicePull();
 		return USD;
 	}
 	
