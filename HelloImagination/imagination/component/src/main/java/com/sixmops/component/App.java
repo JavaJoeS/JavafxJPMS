@@ -20,12 +20,19 @@ import java.io.ByteArrayInputStream;
  * Hello world!
  *
  */
-public class App {
-	
+public class App  {
+	private String USD;
 	protected static final String bits="https://bitaps.com/api/ticker?";
+	TimedServicePull spull;
 	public App() {
 		
+		//spull = new TimedServicePull( this );
 		System.out.println( "Hello App!" );
+		
+		//getBitcoinTicker();
+		
+	}
+	public void getBitcoinTicker() {
 		StringBuilder sb = new StringBuilder(bits);
 		sb.append("average");
 		
@@ -51,7 +58,8 @@ public class App {
 				 //{"fx_rates": {"try": "25558.66", "rub": "267666.33", "cny": "25712.15", "eur": "3346.14"}, "usd": 3833.8, "market": "average", "timestamp": 1546249500}
 
 				 JsonParser jp = Json.createParser( new ByteArrayInputStream(  response.get().body().getBytes() ) );
-				 
+				 String location="";
+				 boolean gotUsd=false;
 				 while ( jp.hasNext() ) {
 					 
 					 Event event = jp.next();
@@ -67,13 +75,23 @@ public class App {
 		                    //System.out.println("VALUE_TRUE:"+event.toString());
 		                    break;
 		                case KEY_NAME:
-		                    System.out.print(event.toString() + " " + jp.getString() + " - ");
+		                	location=jp.getString();
+		                    System.out.print("MY_KEY_NAME["+event.toString()+"]"+ "GRABBER[" + location + "] - ");
+		                    if (location.equals("usd")) {
+		                    	System.out.print("WE HAVE US DOLLARS");
+		                    	gotUsd=true;
+		                    }
 		                    break;
 		                case VALUE_STRING:
 		                	System.out.println(event.toString() + " " + jp.getString());
 		                	break;
 		                case VALUE_NUMBER:
-		                    System.out.println(event.toString() + " " + jp.getString());
+		                    //System.out.println(event.toString() + " " + jp.getString());
+		                    if ( gotUsd) {
+		                    	//System.out.println(event.toString() + "  ITS USD " + jp.getString());
+		                    	USD=jp.getString();
+		                    	gotUsd=false;
+		                    }
 		                    break;
 		            }
 //							 case "fx_rates":
@@ -104,6 +122,12 @@ public class App {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public String getUsd() {
+		
+		System.out.println("App  getUSD  teh dollars");
+		//new TimedServicePull();
+		return USD;
 	}
 	
     public static void main( String[] args )

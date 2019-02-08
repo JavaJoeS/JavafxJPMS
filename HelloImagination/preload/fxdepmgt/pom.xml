@@ -1,0 +1,119 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.sixmops</groupId>
+	<artifactId>fxdepmgt</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	
+	<properties>
+		<javafx.version>12-ea+10</javafx.version>
+		<json.version>1.1.4</json.version>
+		<fx.home>/org/openjfx/</fx.home>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>unix-family</id>
+			<activation>
+				<os>
+					<family>unix</family>
+				</os>
+			</activation>
+			<properties>
+				<os.type>linux</os.type>
+			</properties>
+		</profile>
+		<profile>
+			<id>windoz-family</id>
+			<activation>
+				<os>
+					<family>windows</family>
+				</os>
+			</activation>
+			<properties>
+				<os.type>windoz</os.type>
+			</properties>
+		</profile>
+		
+	</profiles>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<executions>
+					<execution>
+						<id>makedir-em-json-jmod</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>generate-resources</phase>
+						<configuration>
+							<executable>mkdir</executable>
+							<arguments>
+								<argument>-p</argument>
+								<argument>${settings.localRepository}/javax/json/javax.json-api-mod/${json.version}</argument>
+							</arguments>
+							<successCodes>0,2,128</successCodes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>make-em-json-jmod</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>generate-resources</phase>
+						<configuration>
+							<executable>jmod</executable>
+							<arguments>
+								<argument>create</argument>
+								<argument>--class-path</argument>
+								<argument>${settings.localRepository}/javax/json/javax.json-api/${json.version}/javax.json-api-${json.version}.jar</argument>
+								<argument>${settings.localRepository}/javax/json/javax.json-api-mod/${json.version}/javax.json-api-mod-${json.version}.jmod</argument>
+							</arguments>
+							<successCodes>0,2,128</successCodes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+					<groupId>com.soebes.maven.plugins</groupId>
+					<artifactId>maven-echo-plugin</artifactId>
+					<version>0.1</version>
+					<executions>
+						<execution>
+							<phase>install</phase>
+							<goals>
+								<goal>echo</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<echos>
+							<echo>------Dependency Management to install the JAVAX.JSON Jmod-----</echo>
+						</echos>
+					</configuration>
+				</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.json</groupId> -->
+<!-- 			<artifactId>javax.json-api-mod</artifactId> -->
+<!-- 			<version>1.1.4</version> -->
+<!-- 			<type>jmod</type> -->
+<!-- 		</dependency> -->
+		<dependency>
+			<groupId>javax.json</groupId>
+			<artifactId>javax.json-api</artifactId>
+			<version>1.1.4</version>
+		</dependency>
+	</dependencies>
+
+</project>

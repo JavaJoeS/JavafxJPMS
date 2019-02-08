@@ -12,14 +12,16 @@
 	</parent>
 
 
-	<packaging>jmod</packaging>
+	<packaging>jlink</packaging>
 
 	<groupId>com.sixmops</groupId>
-	<artifactId>simulation</artifactId>
+	<artifactId>finalruntime</artifactId>
 	<version>1.0</version>
 
 	<properties>
 		<maven.test.skip>true</maven.test.skip>
+		<!-- <maven.jlink.version>3.0.0-alpha-1</maven.jlink.version> -->
+		<maven.jlink.version>3.0.0-alpha-2-SNAPSHOT</maven.jlink.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.target>11</maven.compiler.target>
 		<maven.compiler.source>11</maven.compiler.source>
@@ -34,8 +36,15 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.0</version>
 				<configuration>
-					<release>${maven.compiler.release}</release>
+					<release>11</release>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.ow2.asm</groupId>
+						<artifactId>asm</artifactId>
+						<version>7.0</version> <!-- Use newer version of ASM -->
+					</dependency>
+				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -52,7 +61,7 @@
 				<configuration>
 					<toolchains>
 						<jdk>
-							<version>${maven.compiler.release}</version>
+							<version>11</version>
 							<vendor>oracle</vendor>
 						</jdk>
 					</toolchains>
@@ -60,36 +69,62 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jmod-plugin</artifactId>
-				<version>3.0.0-alpha-2-SNAPSHOT</version>
+				<artifactId>maven-jlink-plugin</artifactId>
+				<version>${maven.jlink.version}</version>
 				<extensions>true</extensions>
 				<configuration>
+					<verbose>true</verbose>
 					<detail>true</detail>
-					<mainClass>com.sixmops.simulation.MainFX</mainClass>
-					<targetPlatform>linux-amd64</targetPlatform>
-<!-- 					<classPath>/home/joe/.m2/repository/org/openjfx/javafx-controls/12-ea+6</classPath> -->
-<!-- 					<modulePath>/home/joe/.m2/repository/org/openjfx/javafx-controls/12-ea+6</modulePath> -->
+					<noHeaderFiles>true</noHeaderFiles>
+					<noManPages>true</noManPages>
+					<modulePaths>${settings.localRepository}/com/sixmops/component/1.0:${settings.localRepository}/com/sixmops/simulation/1.0:${settings.localRepository}/org/openjfx/javafx-graphics-mod/${javafx.version}:${settings.localRepository}/org/openjfx/javafx-controls-mod/${javafx.version}:${settings.localRepository}/org/openjfx/javafx-base-mod/${javafx.version}:${settings.localRepository}/javax/json/javax.json-api-mod/${json.version}</modulePaths>
+					<addModules>
+<!-- 						<addModule>javax.json</addModule> -->
+<!-- 						<addModule>org.glassfish.java.json</addModule> -->
+						<addModule>com.sixmops.component.bits</addModule>
+						<addModule>com.sixmops.simulation</addModule>
+						<addModule>javafx.graphics</addModule>
+					</addModules>
+					<launcher>run=com.sixmops.simulation/com.sixmops.simulation.MainFX</launcher>
 				</configuration>
-				<!-- <executions> -->
-				<!-- <execution> -->
-				<!-- <id>list</id> -->
-				<!-- <goals> -->
-				<!-- <goal>list</goal> -->
-				<!-- </goals> -->
-				<!-- <phase>verify</phase> -->
-				<!-- </execution> -->
-				<!-- <execution> -->
-				<!-- <id>describe</id> -->
-				<!-- <goals> -->
-				<!-- <goal>describe</goal> -->
-				<!-- </goals> -->
-				<!-- <phase>verify</phase> -->
-				<!-- </execution> -->
-				<!-- </executions> -->
+				<executions>
+					<execution>
+						<id>make-image</id>
+						<goals>
+							<goal>help</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
+
 	<dependencies>
+		<dependency>
+			<groupId>javax.json</groupId>
+			<artifactId>javax.json-api-mod</artifactId>
+			<version>1.1.4</version>
+			<type>jmod</type>
+		</dependency>
+		<dependency>
+			<groupId>com.sixmops</groupId>
+			<artifactId>component</artifactId>
+			<version>1.0</version>
+			<type>jmod</type>
+		</dependency>
+		<dependency>
+			<groupId>com.sixmops</groupId>
+			<artifactId>simulation</artifactId>
+			<version>1.0</version>
+			<type>jmod</type>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>1.1.4</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-base-mod</artifactId>
@@ -111,18 +146,7 @@
 			<classifier>${os.type}</classifier>
 			<type>jmod</type>
 		</dependency>
-		<dependency>
-			<groupId>com.sixmops</groupId>
-			<artifactId>component</artifactId>
-			<version>1.0</version>
-			<type>jmod</type>
-		</dependency>
-		<dependency>
-			<groupId>javax.json</groupId>
-			<artifactId>javax.json-api-mod</artifactId>
-			<version>1.1.4</version>
-			<type>jmod</type>
-		</dependency>
-		
+
 	</dependencies>
+
 </project>

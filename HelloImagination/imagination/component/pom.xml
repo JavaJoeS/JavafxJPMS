@@ -5,7 +5,7 @@
 
 	<parent>
 		<groupId>com.sixmops</groupId>
-		<artifactId>parent</artifactId>
+		<artifactId>imagination</artifactId>
 		<version>1.0</version>
 		<relativePath>../</relativePath>
 	</parent>
@@ -23,7 +23,6 @@
 	<version>1.0</version>
 
 	<packaging>jmod</packaging>
-
 
 	<build>
 		<plugins>
@@ -68,45 +67,39 @@
 				<configuration>
 					<detail>true</detail>
 					<mainClass>com.sixmops.component.App</mainClass>
+					<doNotResolveByDefault>true</doNotResolveByDefault>
+					<goal>install</goal>
+					<jmodFile>${project.build.directory}/jmods/${project.artifactId}.jmod</jmodFile>
+					<modulePath>${settings.localRepository}/javax/json/javax.json-api-mod/${json.version}</modulePath>
 					<targetPlatform>linux-amd64</targetPlatform>
+					
 				</configuration>
-				<executions>
-					<execution>
-						<id>list</id>
-						<goals>
-							<goal>list</goal>
-						</goals>
-						<phase>verify</phase>
-					</execution>
-					<execution>
-						<id>describe</id>
-						<goals>
-							<goal>describe</goal>
-						</goals>
-						<phase>verify</phase>
-					</execution>
-				</executions>
+				<!-- <executions> -->
+				<!-- <execution> -->
+				<!-- <id>list</id> -->
+				<!-- <goals> -->
+				<!-- <goal>list</goal> -->
+				<!-- </goals> -->
+				<!-- <phase>verify</phase> -->
+				<!-- </execution> -->
+				<!-- <execution> -->
+				<!-- <id>describe</id> -->
+				<!-- <goals> -->
+				<!-- <goal>describe</goal> -->
+				<!-- </goals> -->
+				<!-- <phase>verify</phase> -->
+				<!-- </execution> -->
+				<!-- </executions> -->
 			</plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>3.0.0-M2</version>
-				<executions>
-					<!-- ! Currently turned off enforcer cause ! we are using SNAPSHOT versions 
-						of plugins ! which are by default forbidden by ! the inherited enforcer rules. -->
-					<execution>
-						<id>enforce-maven</id>
-						<phase>UNKNOWN</phase>
-					</execution>
-				</executions>
-			</plugin>
+
 		</plugins>
 	</build>
+
 	<dependencies>
 		<dependency>
 			<groupId>javax.json</groupId>
-			<artifactId>javax.json-api</artifactId>
+			<artifactId>javax.json-api-mod</artifactId>
 			<version>1.1.4</version>
 			<type>jmod</type>
 		</dependency>

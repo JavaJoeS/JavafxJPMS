@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sixmops</groupId>
-	<artifactId>HelloImagination</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<artifactId>javaFXProject</artifactId>
+	<version>1.0</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -18,46 +18,86 @@
 		<maven.jlink.version>3.0.0-alpha-2-SNAPSHOT</maven.jlink.version>
 	</properties>
 
+	<build>
+		<plugins>
+			<plugin>
+					<groupId>com.soebes.maven.plugins</groupId>
+					<artifactId>maven-echo-plugin</artifactId>
+					<version>0.1</version>
+					<executions>
+						<execution>
+							<phase>install</phase>
+							<goals>
+								<goal>echo</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<echos>
+							<echo>----------------------------------------------------------------------------</echo>
+							<echo>RUN MVN TWICE! The first run loads dependencies from git, the second builds.</echo>
+							<echo>----------------------------------------------------------------------------</echo>
+						</echos>
+					</configuration>
+				</plugin>
+		</plugins>
+	</build>
+	
+	
+	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>preload</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>jfx-build-local</id>
+			<activation>
+				<file>
+					<missing>${user.home}/.m2/repository/org/openjfx/javafx/12-ea+6/javafx-12-ea+6.pom</missing>
+				</file>
+			</activation>
+			<modules>
+				<module>preload</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>jmod-build-local</id>
+			<activation>
+				<file>
+					<missing>${user.home}/.m2/repository/org/apache/maven/plugins/maven-jmod-plugin/3.0.0-alpha-2-SNAPSHOT/maven-jmod-plugin-3.0.0-alpha-2-SNAPSHOT.jar</missing>
+				</file>
+			</activation>
+			<modules>
+				<module>imagination/jmod-dependency</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>jlink-build-local</id>
+			<activation>
+				<file>
+					<missing>${user.home}/.m2/repository/org/apache/maven/plugins/maven-jlink-plugin/3.0.0-alpha-2-SNAPSHOT/maven-jlink-plugin-3.0.0-alpha-2-SNAPSHOT.jar</missing>
+				</file>
+			</activation>
+			<modules>
+				<module>imagination/jlink-dependency</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>sixmops</id>
+			<activation>
+				<file>
+					<exists>${user.home}/.m2/repository/org/apache/maven/plugins/maven-jlink-plugin/3.0.0-alpha-2-SNAPSHOT/maven-jlink-plugin-3.0.0-alpha-2-SNAPSHOT.jar</exists>
+				</file>
+			</activation>
+			<modules>
+				<module>imagination</module>
+			</modules>
+		</profile>
+	</profiles>
 
-
-	<modules>
-
-		<module>imagination/parent</module>
-		<module>imagination/component</module>
-		<module>imagination/simulation</module>
-		<module>imagination/runtime</module>
-
-
-	</modules>
-
-	<dependencies>
-
-		<dependency>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-jmod-plugin</artifactId>
-			<version>${maven.jmod.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.json</groupId>
-			<artifactId>javax.json-api</artifactId>
-			<version>1.1.4</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.json</artifactId>
-			<version>1.1.4</version>
-		</dependency>
-
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.maven.plugins</groupId> -->
-		<!-- <artifactId>maven-jlink-plugin</artifactId> -->
-		<!-- <version>${maven.jlink.version}</version> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.maven.plugins</groupId> -->
-		<!-- <artifactId>maven-jlink-plugin</artifactId> -->
-		<!-- <version>3.0.0-alpha-2-SNAPSHOT</version> -->
-		<!-- </dependency> -->
-	</dependencies>
 </project>

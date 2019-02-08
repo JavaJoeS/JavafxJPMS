@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.sixmops</groupId>
+	<artifactId>javafxwindows</artifactId>
+	<version>1.0</version>
+
+	<packaging>pom</packaging>
+
+	<build>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<tasks>
+								<mkdir dir="${settings.localRepository}${fx.home}javafx-base-mod/${javafx.version}" />
+								<exec executable="jmod">
+									<arg value="create" />
+									<arg value="--class-path" />
+									<arg value="${settings.localRepository}${fx.home}javafx-base/${javafx.version}/javafx-base-${javafx.version}-${os.type}.jar" />
+									<arg value="${settings.localRepository}${fx.home}javafx-base-mod/${javafx.version}/javafx-base-mod-${javafx.version}-${os.type}.jmod" />
+								</exec>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>
