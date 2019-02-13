@@ -34,7 +34,7 @@ public class EverythingDate {
 	public void update() {
 		String date = simpleDateFormat.format(new Date());
 		this.setCurrentDateTime(date);
-		System.out.println(date);
+		//System.out.println(date);
 	}
 	
 }

@@ -10,7 +10,7 @@ public class EverythingTask extends TimerTask {
 	
 	@Override
 	public void run() {
-		System.out.println("EverythingTask -  Running run EverythingDate");
+		//System.out.println("EverythingTask -  Running run EverythingDate");
 		everythingDate.update();
 		
 	}

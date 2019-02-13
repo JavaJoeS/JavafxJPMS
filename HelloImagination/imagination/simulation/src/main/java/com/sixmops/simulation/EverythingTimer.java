@@ -17,7 +17,7 @@ public class EverythingTimer {
 		
 		everythingTask = new EverythingTask( everythingDate);
 		
-		timer.scheduleAtFixedRate( everythingTask, 1,  60*1000 );
+		timer.scheduleAtFixedRate( everythingTask, 1000,  5000 );
 		
 	}
 }

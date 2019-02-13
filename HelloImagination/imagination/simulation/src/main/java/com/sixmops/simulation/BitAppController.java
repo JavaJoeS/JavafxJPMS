@@ -17,13 +17,13 @@ public class BitAppController {
 		
 		try {
 			//for( int i=0; i < 10;i++) {
-				System.out.println( "BitAppController -  Scheduling" );
+				//System.out.println( "BitAppController -  Scheduling" );
 				Thread.sleep(1000);
 				Runnable checkRate = new CheckRateRunner( app, bitcoinRate);
 				
 				ScheduledFuture<?> scheduleFuture =  scheduler.scheduleAtFixedRate(checkRate, 1, 3, TimeUnit.MINUTES);
 				Runnable canceller = () -> scheduleFuture.cancel(true);
-			    scheduler.schedule(canceller, 1, TimeUnit.HOURS);
+			    //scheduler.schedule(canceller, 1, TimeUnit.HOURS);
 				//scheduler.schedule( new CheckRateRunner( app ), 4, TimeUnit.MINUTES);
 			//}
 		} catch(Exception e) {

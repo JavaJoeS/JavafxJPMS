@@ -76,14 +76,14 @@ public class App  {
 		                    break;
 		                case KEY_NAME:
 		                	location=jp.getString();
-		                    System.out.print("MY_KEY_NAME["+event.toString()+"]"+ "GRABBER[" + location + "] - ");
+		                    //System.out.print("MY_KEY_NAME["+event.toString()+"]"+ "GRABBER[" + location + "] - ");
 		                    if (location.equals("usd")) {
-		                    	System.out.print("WE HAVE US DOLLARS");
+		                    	//System.out.print("WE HAVE US DOLLARS");
 		                    	gotUsd=true;
 		                    }
 		                    break;
 		                case VALUE_STRING:
-		                	System.out.println(event.toString() + " " + jp.getString());
+		                	//System.out.println(event.toString() + " " + jp.getString());
 		                	break;
 		                case VALUE_NUMBER:
 		                    //System.out.println(event.toString() + " " + jp.getString());
@@ -125,7 +125,7 @@ public class App  {
 	}
 	public String getUsd() {
 		
-		System.out.println("App  getUSD  teh dollars");
+		//System.out.println("App  getUSD  teh dollars");
 		//new TimedServicePull();
 		return USD;
 	}
