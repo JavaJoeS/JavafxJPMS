@@ -80,7 +80,7 @@
 					<modulePaths>${settings.localRepository}/com/sixmops/component/1.0:${settings.localRepository}/com/sixmops/simulation/1.0:${settings.localRepository}/org/openjfx/javafx-graphics-mod/${javafx.version}:${settings.localRepository}/org/openjfx/javafx-controls-mod/${javafx.version}:${settings.localRepository}/org/openjfx/javafx-base-mod/${javafx.version}:${settings.localRepository}/javax/json/javax.json-api-mod/${json.version}</modulePaths>
 					<addModules>
 <!-- 						<addModule>javax.json</addModule> -->
-<!-- 						<addModule>org.glassfish.java.json</addModule> -->
+						<addModule>org.glassfish.java.json</addModule>
 						<addModule>com.sixmops.component.bits</addModule>
 						<addModule>com.sixmops.simulation</addModule>
 						<addModule>javafx.graphics</addModule>
