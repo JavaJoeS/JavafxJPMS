@@ -16,6 +16,7 @@
 		<!-- <maven.jmod.version>3.0.0-alpha-1</maven.jmod.version> -->
 		<maven.jmod.version>3.0.0-alpha-2-SNAPSHOT</maven.jmod.version>
 		<maven.jlink.version>3.0.0-alpha-2-SNAPSHOT</maven.jlink.version>
+		<localRepo>${user.home}/.m2/repository</localRepo>
 	</properties>
 
 	<build>

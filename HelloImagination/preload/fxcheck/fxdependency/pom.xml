@@ -155,41 +155,8 @@
 							<successCodes>0,2,128</successCodes>
 						</configuration>
 					</execution>
-					<execution>
-						<id>make-em-glassfish-jdep</id>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<phase>generate-resources</phase>
-						<configuration>
-							<executable>jdeps</executable>
-							<arguments>
-								<argument>--module-path</argument>
-								<argument>${settings.localRepository}/org/glassfish/javax.json/1.1.4/javax.json-1.1.4.jar</argument>
-								<argument>--generate-module-info</argument>
-								<argument>out</argument>
-								<argument>${settings.localRepository}/org/glassfish/javax.json/1.1.4/javax.json-1.1.4.jar</argument>
-							</arguments>
-							<successCodes>0,2,128</successCodes>
-						</configuration>
-					</execution>
-					<execution>
-						<id>make-em-glassfish-jmod</id>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<phase>generate-resources</phase>
-						<configuration>
-							<executable>jmod</executable>
-							<arguments>
-								<argument>create</argument>
-								<argument>class-path</argument>
-								<argument>${settings.localRepository}/org/glassfish/javax.json/1.1.4/javax.json-1.1.4.jar</argument>
-								<argument>${settings.localRepository}/org/glassfish/javax.json/1.1.4/javax.json-1.1.4.jmod</argument>
-							</arguments>
-							<successCodes>0,2,128</successCodes>
-						</configuration>
-					</execution>
+					
+					
 				</executions>
 			</plugin>
 
@@ -211,12 +178,5 @@
 			<artifactId>javafx-graphics</artifactId>
 			<version>${javafx.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.json</artifactId>
-			<version>1.1.4</version>
-		</dependency>
-
 	</dependencies>
-
 </project>

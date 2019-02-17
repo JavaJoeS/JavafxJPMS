@@ -77,9 +77,9 @@
 					<detail>true</detail>
 					<noHeaderFiles>true</noHeaderFiles>
 					<noManPages>true</noManPages>
-					<modulePaths>${settings.localRepository}/com/sixmops/component/1.0:${settings.localRepository}/com/sixmops/simulation/1.0:${settings.localRepository}/org/openjfx/javafx-graphics-mod/${javafx.version}:${settings.localRepository}/org/openjfx/javafx-controls-mod/${javafx.version}:${settings.localRepository}/org/openjfx/javafx-base-mod/${javafx.version}:${settings.localRepository}/javax/json/javax.json-api-mod/${json.version}</modulePaths>
+					<modulePaths>${settings.localRepository}/javax/json/javax.json-api-mod/1.1.4/javax.json-api-mod-1.1.4.jmod:${settings.localRepository}/org/glassfish/javax.json/1.1.4/javax.json-1.1.4.jmod:${settings.localRepository}/com/sixmops/component/1.0:${settings.localRepository}/com/sixmops/simulation/1.0:${settings.localRepository}/org/openjfx/javafx-graphics-mod/${javafx.version}:${settings.localRepository}/org/openjfx/javafx-controls-mod/${javafx.version}:${settings.localRepository}/org/openjfx/javafx-base-mod/${javafx.version}:${settings.localRepository}/javax/json/javax.json-api-mod/${json.version}</modulePaths>
 					<addModules>
-<!-- 						<addModule>javax.json</addModule> -->
+						<addModule>java.json</addModule>
 						<addModule>org.glassfish.java.json</addModule>
 						<addModule>com.sixmops.component.bits</addModule>
 						<addModule>com.sixmops.simulation</addModule>
@@ -123,6 +123,7 @@
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.json</artifactId>
 			<version>1.1.4</version>
+			<type>jmod</type>
 		</dependency>
 
 		<dependency>

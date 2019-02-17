@@ -12,6 +12,7 @@
 		<javafx.version>12-ea+10</javafx.version>
 		<json.version>1.1.4</json.version>
 		<fx.home>/org/openjfx/</fx.home>
+		<localRepo>${user.home}/.m2/repository</localRepo>
 	</properties>
 
 	<profiles>
@@ -41,7 +42,7 @@
 			<id>sixmops</id>
 			<activation>
 				<file>
-					<missing>${settings.localRepository}/javax/json/javax.json-api-mod/${json.version}/javax.json-api-mod-${json.version}.jmod</missing>
+					<missing>${localRepo}/javax/json/javax.json-api-mod/${json.version}/javax.json-api-mod-${json.version}.jmod</missing>
 				</file>
 			</activation>
 			<modules>
