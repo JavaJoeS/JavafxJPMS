@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.sixmops</groupId>
+		<artifactId>fxcheck</artifactId>
+		<version>1.0</version>
+		<relativePath>../</relativePath>
+	</parent>
+	
+	<groupId>com.sixmops</groupId>
+	<artifactId>checkglassfish</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	
+	<properties>
+		<localRepo>${user.home}/.m2/repository</localRepo>
+	</properties>
+	
+
+	<profiles>
+		<profile>
+			<id>glassfish</id>
+			<activation>
+				<file>
+					<missing>${localRepo}/org/glassfish/javax.json/1.1.4/javax.json-1.1.4.jmod</missing>
+				</file>
+			</activation>
+			<modules>
+			
+				<module>gfdependency</module>
+			
+			</modules>
+		</profile>
+	</profiles>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-toolchains-plugin</artifactId>
+				<version>1.1</version>
+				<executions>
+					<execution>
+          				<?m2e ignore ?>
+						<goals>
+							<goal>toolchain</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<toolchains>
+						<jdk>
+							<version>11</version>
+							<vendor>oracle</vendor>
+						</jdk>
+					</toolchains>
+				</configuration>
+			</plugin>
+			<plugin>
+					<groupId>com.soebes.maven.plugins</groupId>
+					<artifactId>maven-echo-plugin</artifactId>
+					<version>0.1</version>
+					<executions>
+						<execution>
+							<phase>install</phase>
+							<goals>
+								<goal>echo</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<echos>
+							<echo>---Include glassfish dependencies, build them, and install localRepository -----</echo>
+						</echos>
+					</configuration>
+				</plugin>
+		</plugins>
+	</build>
+</project>
