@@ -49,6 +49,28 @@
 				<module>fxdepmgt</module>
 			</modules>
 		</profile>
+		<profile>
+			<id>jmod-install</id>
+			<activation>
+				<file>
+					<missing>${localRepo}/org/apache/maven/plugins/maven-jmod-plugin/3.0.0-alpha-2-SNAPSHOT</missing>
+				</file>
+			</activation>
+			<modules>
+				<module>jmod-dependency</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>jlink-install</id>
+			<activation>
+				<file>
+					<missing>${localRepo}/org/apache/maven/plugins/maven-jlink-plugin/3.0.0-alpha-2-SNAPSHOT</missing>
+				</file>
+			</activation>
+			<modules>
+				<module>jlink-dependency</module>
+			</modules>
+		</profile>
 	</profiles>
 	
 	<build>
